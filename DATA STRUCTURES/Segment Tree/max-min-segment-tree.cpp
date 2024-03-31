@@ -57,7 +57,6 @@ int main() {
     int n = sizeof(a) / sizeof(a[0]) - 1;
     SegmentTree seg;
     seg.Build(a, 1, 1, n);
-    cout << n << endl;
     cout << seg.get_min(1, 1, n, 2, 4) << endl;
     cout << seg.get_max(1, 1, n, 4, 8) << endl;
 
