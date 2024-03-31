@@ -24,3 +24,5 @@ int main() {
 
     cout << dp[n][w];
 }
+
+// https://cses.fi/problemset/task/1158
