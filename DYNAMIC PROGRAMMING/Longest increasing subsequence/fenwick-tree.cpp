@@ -2,10 +2,10 @@
 
 using namespace std;
 
-const int N = 1e5 + 5;
+const int N = 3e4 + 5;
 
 int n;
-vector<int> a, b;
+vector<int> a;
 
 class FenwickTree {
 private:
@@ -21,9 +21,8 @@ public:
         return res;
     }
 
-    void update(int idx) {
-        int val = getQuery(idx - 1) + 1;
-        for (; idx <= n; idx += idx & (idx)) 
+    void update(int idx, int val) {
+        for (; idx < N; idx += idx & (-idx)) 
             bit[idx] = max(bit[idx], val);
     }
 };
@@ -32,23 +31,23 @@ FenwickTree BIT;
 
 int main() {
     cin >> n;
-    a.resize(n, 0);
-    b.resize(n, 0);
-    for (int i = 0; i < n; ++i) cin >> a[i], b[i] = a[i];
+    a.resize(n);
+    for (int &it : a) cin >> it;
+
+    vector<int> b(a);
     sort(b.begin(), b.end());
-    unique(b.begin(), b.end());
+    b.resize(unique(b.begin(), b.end()) - b.begin());
     for (int i = 0; i < n; ++i) 
         a[i] = lower_bound(b.begin(), b.end(), a[i]) - b.begin() + 1;
 
-    n = *max_element(a.begin(), a.end());
-    // for (auto it : a) cout << it << ' ';
-    // cout << endl;
-
-    for (int i = 0; i < a.size(); ++i) {
-        BIT.update(a[i]);
+    int res = 0;
+    for (auto i : a) {
+        int val = BIT.getQuery(i - 1) + 1;
+        BIT.update(i, val);
+        res = max(res, val);
     }
     
-    cout << BIT.getQuery(n);
+    cout << res;
 
     return 0;
 }
