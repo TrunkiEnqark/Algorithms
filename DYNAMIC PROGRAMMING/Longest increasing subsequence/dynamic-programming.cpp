@@ -3,7 +3,6 @@
 using namespace std;
 
 const int N = 1e3;
-
 int n, a[N + 1], dp[N + 1];
 
 int main() {

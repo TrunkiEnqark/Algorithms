@@ -25,9 +25,7 @@ public:
         for (; idx < N; idx += idx & (-idx)) 
             bit[idx] = max(bit[idx], val);
     }
-};
-
-FenwickTree BIT;
+} BIT;
 
 int main() {
     cin >> n;
@@ -46,7 +44,6 @@ int main() {
         BIT.update(i, val);
         res = max(res, val);
     }
-    
     cout << res;
 
     return 0;

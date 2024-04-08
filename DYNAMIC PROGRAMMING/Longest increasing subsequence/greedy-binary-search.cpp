@@ -4,7 +4,6 @@ using namespace std;
 
 const int N = 1e5;
 const int inf = 1e9;
-
 int n, a[N + 1], b[N + 1];
 
 int main() {
