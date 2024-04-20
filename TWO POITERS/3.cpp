@@ -18,7 +18,6 @@ int main() {
             sum -= a[i];
             i++;
         } 
-        // sau while thi sum <= s => len = j - i + 1
         // cout << i << ' ' << j << endl;
         res = max(res, j - i + 1);
 
