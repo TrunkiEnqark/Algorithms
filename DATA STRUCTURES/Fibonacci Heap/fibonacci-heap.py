@@ -23,7 +23,7 @@ class FibonacciHeap:
     root_list, min_node = None, None
     
     total_nodes = 0
-    
+
     def get_min(self):
         return self.min_node
     
@@ -46,6 +46,21 @@ class FibonacciHeap:
                 
             self.total_nodes -= 1
         return z
+    
+    def insert(self, key, value = None):
+        pass
+    
+    def decrease_key(self, key, delta):
+        pass
+    
+    def merge(self, h2):
+        pass
+    
+    def cut(self, x, y):
+        pass
+    
+    def cascading_cut(self, y):
+        pass
     
     # rebuild fibonacci heap
     def consolidate(self):
