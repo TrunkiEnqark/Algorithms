@@ -2,7 +2,7 @@ import math
 
 class FibonacciHeap:
     class Node: 
-        def __init__(self, key, value) -> None:
+        def __init__(self, key, value):
             self.key = key
             self.value = value
             self.parent = self.child = self.left = self.right = None
@@ -48,19 +48,52 @@ class FibonacciHeap:
         return z
     
     def insert(self, key, value = None):
-        pass
+        new_node = self.Node(key, value)
+        new_node.left = new_node.right = new_node
+        self.merge_with_root_list(new_node)
+        if self.min_node is None or self.min_node.key < new_node.key:
+            self.min_node = new_node
+        self.total_nodes += 1
     
-    def decrease_key(self, key, delta):
-        pass
-    
-    def merge(self, h2):
-        pass
+    def decrease_key(self, x, k):
+        if x.key < k:
+            print("error: new key is greater than current key")
+            return None
+        x.key = k
+        y = x.parent
+        if y is not None and x.key < y.key:
+            self.cut(x, y)
+            self.cascading_cut(y)
+        # reset min node if necessary
+        if x.key < self.min_node.key:
+            self.min_node = x
     
     def cut(self, x, y):
-        pass
+        self.remove_from_child_list(y, x)
+        y.degree -= 1
+        self.merge_with_root_list(x)
+        x.parent = None
+        x.mark = False
     
     def cascading_cut(self, y):
-        pass
+        z = y.parent
+        if z is not None:
+            if y.mark is False:
+                y.mark = True
+            else:
+                self.cut(y, z)
+                self.cascading_cut(z)
+    
+    def merge(self, h2):
+        last = h2.root_list.left
+        h2.root_list.left = self.root_list.left
+        self.root_list.left.right = h2.root_list
+        self.root_list.left = last
+        self.root_list.left.right = self.root_list
+        
+        if h2.min_node.key < self.min_node.key:
+            self.min_node = h2.min_node
+        self.total_nodes += h2.total_nodes
     
     # rebuild fibonacci heap
     def consolidate(self):
