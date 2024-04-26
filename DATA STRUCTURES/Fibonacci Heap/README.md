@@ -25,9 +25,9 @@
 ## Time complexity comparison
 |Operations   | find-min | delete-min | insert      | decrease-key | meld     |
 |:------------|:--------:|:----------:|:-----------:|:------------:|:--------:|
-|Binary heap  |`O(1)`    |`O(log n)`  | `O(log n)`  |`O(log n)`    |`O(n)`    | 
-|Biomial heap |`O(1)`    |`O(log n)`  | `O(log n)`  |`O(log n)`    |`O(log n)`| 
-|Fibonacci heap  |`O(1)`    |`O(log n)`  | `O(log n)`  |`O(log n)`    |`O(n)`    | 
+|**Binary heap**  |`O(1)`    |`O(log n)`  | `O(log n)`  |`O(log n)`    |`O(n)`    | 
+|**Biomial heap** |`O(1)`    |`O(log n)`  | `O(log n)`  |`O(log n)`    |`O(log n)`| 
+|**Fibonacci heap**  |`O(1)`    |`O(log n)`  | `O(1)`  |`O(1)`       |`O(1)`    | 
 
 ## References:
 
