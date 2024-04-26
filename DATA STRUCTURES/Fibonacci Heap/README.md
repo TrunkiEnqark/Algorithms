@@ -12,7 +12,7 @@
 
 # Fibonacci Heaps Methods
 - ``get_min()``: Lấy giá trị nhỏ nhất trong heaps
-- ``extract_min()``: Trả về giá trị nhỏ nhất hiện tại và xóa node này ra khỏi heaps.
+- ``extract_min()``: Trả về giá trị nhỏ nhất hiện tại và xóa node này ra khỏi heaps
 - ``insert(key)``: Chèn thêm một ``node`` có giá trị ``key`` vào heaps
 - ``decrease_key(x, k)``: Biến đổi ``key`` node ``x`` thành ``k``  
 - ``merge(h2)``: Hợp nhất cây ``h2`` vào ``root_list``
