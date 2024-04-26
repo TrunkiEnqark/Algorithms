@@ -1,14 +1,14 @@
 # Fibonacci Heaps
 
 # Fibonacci Heaps Variables
-``total_nodes``: Số lượng node trong heap
-``root_list``: Gốc của cây đầu tiên trong heaps
-``min_node``: node chứa giá trị nhỏ nhất
+- ``total_nodes``: Số lượng node trong heap
+- ``root_list``: Gốc của cây đầu tiên trong heaps
+- ``min_node``: node chứa giá trị nhỏ nhất
 Trong ``Node`` gồm:
-- ``key``: Giá trị của node
-- ``parent``, ``child``, ``left``, ``right``: Dùng để trỏ đến 4 hướng của node 
-- ``degree``: Bậc của node
-- ``mark``: Có bị mất một nút con kể từ lần cuối cùng nó trở thành nút con của một nút khác hay không.
+    - ``key``: Giá trị của node
+    - ``parent``, ``child``, ``left``, ``right``: Dùng để trỏ đến 4 hướng của node 
+    - ``degree``: Bậc của node
+    - ``mark``: Có bị mất một nút con kể từ lần cuối cùng nó trở thành nút con của một nút khác hay không.
 
 # Fibonacci Heaps Methods
 - ``get_min()``: Lấy giá trị nhỏ nhất trong heaps
