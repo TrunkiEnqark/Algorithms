@@ -1,14 +1,19 @@
+from collections import deque
 import math
 
+class Node: 
+    def __init__(self, key):
+        self.key = key
+        self.parent = self.child = self.left = self.right = None
+        self.degree = 0
+        self.mark = False
+
 class FibonacciHeap:
-    class Node: 
-        def __init__(self, key, value):
-            self.key = key
-            self.value = value
-            self.parent = self.child = self.left = self.right = None
-            self.degree = 0
-            self.mark = False
-    
+    def __init__(self, _total_nodes = 0, _root_list = None, _min_node = None):
+        self.total_nodes = _total_nodes
+        self.root_list = _root_list
+        self.min_node = _min_node
+
     def iterate(self, head):
         node = stop = head
         flag = False
@@ -20,18 +25,16 @@ class FibonacciHeap:
             yield node
             node = node.right
     
-    root_list, min_node = None, None
-    
-    total_nodes = 0
-
     def get_min(self):
-        return self.min_node
+        if self.min_node is None:
+            return 0
+        return self.min_node.key
     
     # delete minimum node
     def extract_min(self):
         z = self.min_node
         if z is not None:
-            if z is not None:
+            if z.child is not None:
                 children = [x for x in self.iterate(z.child)]
                 for i in range(len(children)):
                     self.merge_with_root_list(children[i])
@@ -45,13 +48,16 @@ class FibonacciHeap:
                 self.consolidate()
                 
             self.total_nodes -= 1
-        return z
+        
+        if z is None:
+            return 0
+        return z.key
     
-    def insert(self, key, value = None):
-        new_node = self.Node(key, value)
+    def insert(self, key):
+        new_node = Node(key)
         new_node.left = new_node.right = new_node
         self.merge_with_root_list(new_node)
-        if self.min_node is None or self.min_node.key < new_node.key:
+        if self.min_node is None or self.min_node.key > new_node.key:
             self.min_node = new_node
         self.total_nodes += 1
     
@@ -99,20 +105,21 @@ class FibonacciHeap:
     def consolidate(self):
         A = [None] * int(math.log(self.total_nodes) * 2)
         nodes = [node for node in self.iterate(self.root_list)]
-        for i in range(len(nodes)):
+        for i in range(0, len(nodes)):
             x = nodes[i]
             deg = x.degree
             while A[deg] != None:
                 y = A[deg]
                 if x.key > y.key:
-                    x, y = y, x
+                    temp = x
+                    x, y = y, temp
                 self.heap_link(y, x)
                 A[deg] = None
                 deg += 1
             A[deg] = x
         
         # find new min node
-        for i in range(len(A)):
+        for i in range(0, len(A)):
             if A[i] is not None:
                 if A[i].key < self.min_node.key:
                     self.min_node = A[i]
@@ -133,9 +140,9 @@ class FibonacciHeap:
         if self.root_list is None:
             self.root_list = node
         else:
-            node.right = self.root_list.right
-            node.left = self.root_list
-            self.root_list.right.left = node
+            node.right = self.root_list
+            node.left = self.root_list.left
+            self.root_list.left.right = node
             self.root_list.left = node
     
     # merge node to parent
@@ -146,7 +153,7 @@ class FibonacciHeap:
             node.right = parent.child.right
             node.left = parent.child
             parent.child.right.left = node
-            parent.child.left = node
+            parent.child.right = node
     
     # remove node from root list
     def remove_from_root_list(self, node):
@@ -164,3 +171,39 @@ class FibonacciHeap:
             node.right.parent = parent
         node.left.right = node.right
         node.right.left = node.left
+        
+    # hacky way of printing the tree
+    def print_fibonacci_heap(self, print_marked = False):
+        unvisited = deque()
+        root_list = []
+        marked_nodes = []
+
+        if self.root_list:
+            for node in self.iterate(self.root_list):
+                root_list.append(node.key)
+                unvisited.append(node)
+
+        print('--------------------')
+        print('-- Fibonacci Heap --')
+        print('--------------------')
+        print(f'Total nodes: {self.total_nodes}')
+        print(f'Minimum: {self.min_node.key if self.min_node else None}')
+        print(f'Root list node: {self.root_list.key}')
+        print(f'Root list: {root_list}')
+
+        while unvisited:
+            node = unvisited.popleft()
+            if node.mark and (node.key not in marked_nodes):
+                marked_nodes.append(node.key)
+            if node.child:
+                children = []
+                for child in self.iterate(node.child):
+                    children.append(child.key)
+                    if child.child:
+                        unvisited.append(child)
+                    if child.mark and (child.key not in marked_nodes):
+                        marked_nodes.append(child.key)
+                print(f'Children of {node.key}: {children}')
+        if print_marked:
+            print(f'Marked nodes: {marked_nodes}')
+        print('--------------------\n')
