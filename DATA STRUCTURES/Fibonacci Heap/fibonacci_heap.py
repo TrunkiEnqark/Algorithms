@@ -55,11 +55,12 @@ class FibonacciHeap:
     
     def insert(self, key):
         new_node = Node(key)
+        # make circle
         new_node.left = new_node.right = new_node
         self.merge_with_root_list(new_node)
         if self.min_node is None or self.min_node.key > new_node.key:
             self.min_node = new_node
-        self.total_nodes += 1
+        self.total_nodes += 1   
     
     def decrease_key(self, x, k):
         if x.key < k:
