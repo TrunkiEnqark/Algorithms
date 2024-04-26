@@ -9,10 +9,10 @@ class Node:
         self.mark = False
 
 class FibonacciHeap:
-    def __init__(self, _total_nodes = 0, _root_list = None, _min_node = None):
-        self.total_nodes = _total_nodes
-        self.root_list = _root_list
-        self.min_node = _min_node
+    def __init__(self):
+        self.total_nodes = 0
+        self.root_list = None
+        self.min_node = None
 
     def iterate(self, head):
         node = stop = head
