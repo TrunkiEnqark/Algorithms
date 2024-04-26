@@ -4,7 +4,7 @@
 - ``total_nodes``: Số lượng node trong heap
 - ``root_list``: Gốc của cây đầu tiên trong heaps
 - ``min_node``: node chứa giá trị nhỏ nhất
-Trong ``Node`` gồm:
+- Trong ``Node`` gồm:
     - ``key``: Giá trị của node
     - ``parent``, ``child``, ``left``, ``right``: Dùng để trỏ đến 4 hướng của node 
     - ``degree``: Bậc của node
