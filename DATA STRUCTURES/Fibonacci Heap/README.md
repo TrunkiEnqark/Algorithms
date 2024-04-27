@@ -18,7 +18,7 @@
 	* [Inserting a node](#Insertinganode)
 	* [Finding a minimun node](#Findingaminimunnode)
 	* [Uniting two Fibonacci heaps](#UnitingtwoFibonacciheaps)
-	* [Ectracting the minimum node](#Ectractingtheminimumnode)
+	* [Extracting the minimum node](#Extractingtheminimumnode)
 	* [Dereasing a key](#Dereasingakey)
 	* [Deleting a node](#Deletinganode)
 * [References](#References)
@@ -95,7 +95,7 @@ UNION(H1, H2)
 8. return H
 ```
 
-###  4.5. <a name='Ectractingtheminimumnode'></a>Ectracting the minimum node
+###  4.5. <a name='Extractingtheminimumnode'></a>Extracting the minimum node
 
 ```cpp
 EXTRACT_MIN(H)
