@@ -7,7 +7,23 @@
 
 ![1](https://github.com/TrunkiEnqark/Algorithms/assets/89256879/0556acc5-6b06-4442-b7b3-03aa1338cffa)
 
-## Structure of Fibonacci Heap
+# Table of Contents
+
+<!-- vscode-markdown-toc -->
+* [Structure of Fibonacci Heap](#StructureofFibonacciHeap)
+* [Fibonacci Heap Methods](#FibonacciHeapMethods)
+* [Time complexity comparison](#Timecomplexitycomparison)
+* [Algorithms (pseudocode)](#Algorithmspseudocode)
+	* [Creating a new Fibonacci heap](#CreatinganewFibonacciheap)
+	* [Inserting a node](#Insertinganode)
+	* [Finding a minimun node](#Findingaminimunnode)
+	* [Uniting two Fibonacci heaps](#UnitingtwoFibonacciheaps)
+	* [Ectracting the minimum node](#Ectractingtheminimumnode)
+	* [Dereasing a key](#Dereasingakey)
+	* [Deleting a node](#Deletinganode)
+* [References:](#References:)
+
+##  1. <a name='StructureofFibonacciHeap'></a>Structure of Fibonacci Heap
 - `total_nodes`: Số lượng node trong heap
 - `root_list`: Gốc của cây đầu tiên trong heap
 - `min_node`: node chứa giá trị nhỏ nhất
@@ -17,22 +33,22 @@
     - `degree`: Bậc của node
     - `mark`: Có bị mất một nút con kể từ lần cuối cùng nó trở thành nút con của một nút khác hay không
 
-## Fibonacci Heap Methods
+##  2. <a name='FibonacciHeapMethods'></a>Fibonacci Heap Methods
 - `get_min()`: Lấy giá trị nhỏ nhất trong heaps
 - `extract_min()`: Trả về giá trị nhỏ nhất hiện tại và xóa node này ra khỏi heaps
 - `insert(key)`: Chèn thêm một `node` có giá trị `key` vào heaps
 - `decrease_key(x, k)`: Giảm node `x` xuống giá trị `k`  
 - `merge(h2)`: Hợp nhất cây `h2` vào `root_list`
 
-## Time complexity comparison
+##  3. <a name='Timecomplexitycomparison'></a>Time complexity comparison
 |Operations          | Make Heap | Minimum  | Extract Min | Insert      | Decrease Key | Union    |
 |:-------------------|:---------:|:--------:|:-----------:|:-----------:|:------------:|:--------:|
 |**Binary heap**     |`O(1)`     |`O(1)`    |`O(log n)`   | `O(log n)`  |`O(log n)`    |`O(n)`    |  
 |**Fibonacci heap**  |`O(1)`     |`O(1)`    |`O(log n)`   | `O(1)`      |`O(1)`        |`O(1)`    | 
 
-## Algorithms (pseudocode)
+##  4. <a name='Algorithmspseudocode'></a>Algorithms (pseudocode)
 
-### Creating a new Fibonacci heap
+###  4.1. <a name='CreatinganewFibonacciheap'></a>Creating a new Fibonacci heap
 
 ```cpp
 MAKE_HEAP()
@@ -41,7 +57,7 @@ MAKE_HEAP()
 3. return H
 ```
 
-### Inserting a node
+###  4.2. <a name='Insertinganode'></a>Inserting a node
 
 ```cpp
 INSERT(H, x)
@@ -60,14 +76,14 @@ INSERT(H, x)
 
 ![insert](https://github.com/TrunkiEnqark/Algorithms/assets/89256879/909b75da-dc0d-4139-b732-028deca370b2)
 
-### Finding a minimun node
+###  4.3. <a name='Findingaminimunnode'></a>Finding a minimun node
 
 ```cpp
 FIND_MIN(H)
 1. return H.min_node
 ```
 
-### Uniting two Fibonacci heaps
+###  4.4. <a name='UnitingtwoFibonacciheaps'></a>Uniting two Fibonacci heaps
 
 ```cpp
 UNION(H1, H2)
@@ -79,7 +95,7 @@ UNION(H1, H2)
 8. return H
 ```
 
-### Ectracting the minimum node
+###  4.5. <a name='Ectractingtheminimumnode'></a>Ectracting the minimum node
 
 ```cpp
 EXTRACT_MIN(H)
@@ -145,7 +161,7 @@ HEAP_LINK(H, y, x)
 
 (c)-(m) Xây dựng lại H
 
-### Dereasing a key
+###  4.6. <a name='Dereasingakey'></a>Dereasing a key
 
 ```cpp
 DECREASE_KEY(H, x, k)
@@ -190,14 +206,14 @@ CASCADING_CUT(H, y)
 
 (c)-(e) `DECREASE_KEY(H, 35, 5)`
 
-### Deleting a node
+###  4.7. <a name='Deletinganode'></a>Deleting a node
 ```cpp
 DELETE(H, x)
 1. DECREASE_KEY(H, x, -infinity)
 2. EXTRACT_MIN(H)
 ```
 
-## References:
+##  5. <a name='References:'></a>References:
 
 > [Intro to Algorithm book](http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/chap21.htm)
 
