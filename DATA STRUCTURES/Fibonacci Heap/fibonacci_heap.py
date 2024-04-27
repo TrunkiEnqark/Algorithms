@@ -1,12 +1,6 @@
 from collections import deque
 import math
-class Node: 
-    def __init__(self, key):
-        self.key = key
-        self.parent = self.child = self.left = self.right = None
-        self.degree = 0
-        self.mark = False
-
+from node import Node
 class FibonacciHeap:
     def __init__(self):
         self.total_nodes = 0
@@ -31,9 +25,7 @@ class FibonacciHeap:
             node = node.right
     
     def get_min(self):
-        if self.min_node is None:
-            return 0
-        return self.min_node.key
+        return self.min_node
     
     # delete minimum node
     def extract_min(self):
@@ -54,9 +46,7 @@ class FibonacciHeap:
                 
             self.total_nodes -= 1
         
-        if z is None:
-            return 0
-        return z.key
+        return z
     
     def insert(self, key):
         new_node = Node(key)
@@ -66,6 +56,7 @@ class FibonacciHeap:
         if self.min_node is None or self.min_node.key > new_node.key:
             self.min_node = new_node
         self.total_nodes += 1   
+        return new_node
     
     def decrease_key(self, x, k):
         if x.key < k:
