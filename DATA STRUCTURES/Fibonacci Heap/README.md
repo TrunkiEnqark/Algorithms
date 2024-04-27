@@ -193,7 +193,7 @@ CASCADING_CUT(H, y)
 ### Deleting a node
 ```cpp
 DELETE(H, x)
-1. DECREASE_KEY(H, x)
+1. DECREASE_KEY(H, x, -infinity)
 2. EXTRACT_MIN(H)
 ```
 
