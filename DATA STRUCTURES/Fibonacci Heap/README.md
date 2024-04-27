@@ -5,6 +5,8 @@
 > 2. Xóa phần tử nhỏ nhất (`extract-min`): Thời gian trung bình `O(log n)`, với `n` là số lượng phần tử.
 > 3. Giảm ưu tiên (`decrease-key`): Thời gian trung bình `O(1)` với phép toán này không có bất kỳ công việc `heap-ify` nào, điều này giúp nó trở nên nhanh hơn nhiều so với các loại heap khác.
 
+![1](https://github.com/TrunkiEnqark/Algorithms/assets/89256879/0556acc5-6b06-4442-b7b3-03aa1338cffa)
+
 ## Structure of Fibonacci Heap
 - `total_nodes`: Số lượng node trong heap
 - `root_list`: Gốc của cây đầu tiên trong heap
@@ -55,6 +57,8 @@ INSERT(H, x)
 10. end if
 11. H.total_nodes += 1
 ```
+
+![insert](https://github.com/TrunkiEnqark/Algorithms/assets/89256879/909b75da-dc0d-4139-b732-028deca370b2)
 
 ### Finding a minimun node
 
@@ -132,6 +136,12 @@ HEAP_LINK(H, y, x)
 3. y.mark = FALSE
 ```
 
+![extract_min_a](https://github.com/TrunkiEnqark/Algorithms/assets/89256879/fac6242d-1c65-4eda-aef8-6bbe634a136f)
+![extract_min_b](https://github.com/TrunkiEnqark/Algorithms/assets/89256879/51417e7e-d7fa-4b3c-b51d-18d3e8b9c140)
+(a) Fibonacci heap H lúc đầu
+(b) Nút 3 (nút nhỏ nhất) đã bị xóa
+(c)-(m) Xây dựng lại H
+
 ### Dereasing a key
 
 ```cpp
@@ -170,6 +180,10 @@ CASCADING_CUT(H, y)
 8.      end if
 9. end if
 ```
+
+![decrease key](https://github.com/TrunkiEnqark/Algorithms/assets/89256879/854a99ca-0050-484b-bc93-6a5ef140c3ab)
+(a)-(b) `DECREASE_KEY(H, 46, 15)`
+(c)-(e) `DECREASE_KEY(H, 35, 5)`
 
 ### Deleting a node
 ```cpp
