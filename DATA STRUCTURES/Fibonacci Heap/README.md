@@ -138,8 +138,11 @@ HEAP_LINK(H, y, x)
 
 ![extract_min_a](https://github.com/TrunkiEnqark/Algorithms/assets/89256879/fac6242d-1c65-4eda-aef8-6bbe634a136f)
 ![extract_min_b](https://github.com/TrunkiEnqark/Algorithms/assets/89256879/51417e7e-d7fa-4b3c-b51d-18d3e8b9c140)
+
 (a) Fibonacci heap H lúc đầu
+
 (b) Nút 3 (nút nhỏ nhất) đã bị xóa
+
 (c)-(m) Xây dựng lại H
 
 ### Dereasing a key
@@ -182,7 +185,9 @@ CASCADING_CUT(H, y)
 ```
 
 ![decrease key](https://github.com/TrunkiEnqark/Algorithms/assets/89256879/854a99ca-0050-484b-bc93-6a5ef140c3ab)
+
 (a)-(b) `DECREASE_KEY(H, 46, 15)`
+
 (c)-(e) `DECREASE_KEY(H, 35, 5)`
 
 ### Deleting a node
