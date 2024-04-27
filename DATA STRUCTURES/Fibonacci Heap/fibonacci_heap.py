@@ -1,6 +1,5 @@
 from collections import deque
 import math
-
 class Node: 
     def __init__(self, key):
         self.key = key
@@ -14,6 +13,12 @@ class FibonacciHeap:
         self.root_list = None
         self.min_node = None
 
+    def is_empty(self):
+        return self.total_nodes == 0
+    
+    def size(self):
+        return self.total_nodes
+    
     def iterate(self, head):
         node = stop = head
         flag = False
@@ -37,8 +42,8 @@ class FibonacciHeap:
             if z.child is not None:
                 children = [x for x in self.iterate(z.child)]
                 for i in range(len(children)):
-                    self.merge_with_root_list(children[i])
                     children[i].parent = None
+                    self.merge_with_root_list(children[i])
             self.remove_from_root_list(z)
             
             if z == z.right:
@@ -126,7 +131,6 @@ class FibonacciHeap:
                     self.min_node = A[i]
     
     # Set link x -> y
-    # Of course, y.key < x.key
     def heap_link(self, y, x):
         self.remove_from_root_list(y)
         y.left = y.right = y

@@ -23,11 +23,160 @@
 - `merge(h2)`: Hợp nhất cây `h2` vào `root_list`
 
 ## Time complexity comparison
-|Operations   | find-min | delete-min | insert      | decrease-key | meld     |
-|:------------|:--------:|:----------:|:-----------:|:------------:|:--------:|
-|**Binary heap**  |`O(1)`    |`O(log n)`  | `O(log n)`  |`O(log n)`    |`O(n)`    | 
-|**Biomial heap** |`O(1)`    |`O(log n)`  | `O(log n)`  |`O(log n)`    |`O(log n)`| 
-|**Fibonacci heap**  |`O(1)`    |`O(log n)`  | `O(1)`  |`O(1)`       |`O(1)`    | 
+|Operations          | Make Heap | Minimum  | Extract Min | Insert      | Decrease Key | Union    |
+|:-------------------|:---------:|:--------:|:-----------:|:-----------:|:------------:|:--------:|
+|**Binary heap**     |`O(1)`     |`O(1)`    |`O(log n)`   | `O(log n)`  |`O(log n)`    |`O(n)`    |  
+|**Fibonacci heap**  |`O(1)`     |`O(1)`    |`O(log n)`   | `O(1)`      |`O(1)`        |`O(1)`    | 
+
+## Algorithms (pseudocode)
+
+### Creating a new Fibonacci heap
+
+```cpp
+MAKE_HEAP()
+1. H.min = NULL
+2. H.total_nodes = 0
+3. return H
+```
+
+### Inserting a node
+
+```cpp
+INSERT(H, x)
+1. degree[x] = 0
+2. parent[x] = NULL
+3. child[x] = NULL
+4. left[x] = NULL
+5. right[x] = NULL
+6. mark[x] = FALSE
+7. Add x to root list of H
+8. if x.key < H.min_node.key then
+9.      H.min_node = x
+10. end if
+11. H.total_nodes += 1
+```
+
+### Finding a minimun node
+
+```cpp
+FIND_MIN(H)
+1. return H.min_node
+```
+
+### Uniting two Fibonacci heaps
+
+```cpp
+UNION(H1, H2)
+1. H = MAKE_HEAP()
+2. H.min_node = H1.min_node
+3. concatenate the root list of H2 with the root list of H
+4. H.min_node = minimum(H1.min_node, H2.min_node)
+5. H.total_nodes = H1.total_nodes + H2.total_nodes
+8. return H
+```
+
+### Ectracting the minimum node
+
+```cpp
+EXTRACT_MIN(H)
+1. temp = H.min_node
+2. if temp != NULL then
+3.      add child of temp to root list of H
+4.      remove temp from root list of H
+5.      if temp == temp.right then
+6.          H.min_node = NULL
+7.      else 
+8.          H.min_node = temp.right
+9.          CONSOLIDATE(H)
+10.     end if
+11.     H.total_nodes -= 1
+12. end if
+13. return temp
+```
+
+```cpp
+CONSOLIDATE(H)
+1. let A[0..D(H.total_nodes)] be a new array
+2. for i = 0 to D(H.total_nodes) do
+3.      A[i] = NULL
+4. end for
+5. for each node w in root list of H do
+6.      x = w
+7.      d = x.degree
+8.      while A[d] != NULL do
+9.          y = A[d]
+10.         if x.key > y.key then
+11.             swap(x, y)
+12.         end if
+13.         HEAP_LINK(H, y, x)
+14.         A[d] = NULL
+15.         d += 1
+16.     end while
+17.     A[d] = x
+18. end for
+19. H.min_node = NULL
+20. for i = 0 to D(H.total_nodes) do
+21.     if A[i] != NULL then
+22.         add A[i] to the root list of H
+23.         if (H.min_node == NULL) or (H.min_node.key > A[i].key) then
+24.             H.min_node = A[i]
+25.         end if
+26.     end if
+27. end for
+```
+
+```cpp
+HEAP_LINK(H, y, x)
+1. remove y from the root list of H
+2. make y a child of x, incrementing x.degree
+3. y.mark = FALSE
+```
+
+### Dereasing a key
+
+```cpp
+DECREASE_KEY(H, x, k)
+1. if k > x.key then
+2.      error("new key is greater than current key")
+3. end if
+4. x.key = k
+5. y = x.parent
+6. if y != NULL and x.key < y.key then
+7.      CUT(H, x, y)
+8.      CASCADING_CUT(H, y)
+9. end if
+10. if x.key < H.min_node.key then
+11.     H.min_node = x
+12. end if
+```
+
+```cpp
+CUT(H, x, y)
+1. remove x from the child list of y, decrementing y.degree
+2. add x to the root list of H
+3. x.parent = NULL
+4. x.mark = TRUE
+```
+
+```cpp
+CASCADING_CUT(H, y)
+1. z = y.parent
+2. if z != NULL then
+3.      if y.mark == FALSE then
+4.          y.mark = TRUE
+5.      else 
+6.          CUT(H, y, z)
+7.          CASCADING_CUT(H, z)
+8.      end if
+9. end if
+```
+
+### Deleting a node
+```cpp
+DELETE(H, x)
+1. DECREASE_KEY(H, x)
+2. EXTRACT_MIN(H)
+```
 
 ## References:
 
