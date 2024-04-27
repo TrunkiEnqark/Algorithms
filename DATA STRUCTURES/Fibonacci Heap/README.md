@@ -21,7 +21,7 @@
 	* [Ectracting the minimum node](#Ectractingtheminimumnode)
 	* [Dereasing a key](#Dereasingakey)
 	* [Deleting a node](#Deletinganode)
-* [References:](#References:)
+* [References](#References)
 
 ##  1. <a name='StructureofFibonacciHeap'></a>Structure of Fibonacci Heap
 - `total_nodes`: Số lượng node trong heap
@@ -213,7 +213,7 @@ DELETE(H, x)
 2. EXTRACT_MIN(H)
 ```
 
-##  5. <a name='References:'></a>References:
+##  5. <a name='References'></a>References:
 
 > [Intro to Algorithm book](http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/chap21.htm)
 
