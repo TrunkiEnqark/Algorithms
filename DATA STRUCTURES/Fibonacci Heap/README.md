@@ -218,3 +218,5 @@ DELETE(H, x)
 > [Intro to Algorithm book](http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/chap21.htm)
 
 > [Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_heap)
+
+> [Daniel](https://github.com/danielborowski/fibonacci-heap-python)
