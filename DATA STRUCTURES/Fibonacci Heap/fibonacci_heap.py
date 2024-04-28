@@ -1,32 +1,18 @@
 from collections import deque
 import math
+
 class Node: 
     def __init__(self, key):
         self.key = key
         self.parent = self.child = self.left = self.right = None
         self.degree = 0
         self.mark = False
-        
-    def show_value(self):
-        if self.key is None:
-            return "None"
-        return self.key
 
 class FibonacciHeap:
     def __init__(self):
         self.total_nodes = 0
         self.root_list = None
         self.min_node = None
-    
-    def show(self):
-        print(f'    Minimum node: {self.get_min()},')
-        print(f'    Total nodes: {self.total_nodes},')
-        print(f'    Root list: {self.get_root_list()}')
-
-    def get_root_list(self):
-        if self.root_list is None:
-            return "None"
-        return self.root_list.key
     
     def is_empty(self):
         return self.total_nodes == 0
@@ -47,7 +33,7 @@ class FibonacciHeap:
     
     def get_min(self):
         if self.min_node is None:
-            return "None"
+            return None
         return self.min_node.key
     
     # delete minimum node
@@ -144,7 +130,7 @@ class FibonacciHeap:
                 if A[i].key < self.min_node.key:
                     self.min_node = A[i]
     
-    # Set link x -> y
+    # Set link y -> x
     def heap_link(self, y, x):
         self.remove_from_root_list(y)
         y.left = y.right = y
@@ -190,7 +176,7 @@ class FibonacciHeap:
             node.right.parent = parent
         node.left.right = node.right
         node.right.left = node.left
-        
+
     # hacky way of printing the tree
     def print_fibonacci_heap(self, print_marked = False):
         unvisited = deque()
