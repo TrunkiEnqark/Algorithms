@@ -1,6 +1,7 @@
 from collections import deque
 import math
 from node import Node
+
 class FibonacciHeap:
     def __init__(self):
         self.total_nodes = 0

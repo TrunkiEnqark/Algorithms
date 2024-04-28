@@ -61,12 +61,12 @@ MAKE_HEAP()
 
 ```cpp
 INSERT(H, x)
-1. degree[x] = 0
-2. parent[x] = NULL
-3. child[x] = NULL
-4. left[x] = NULL
-5. right[x] = NULL
-6. mark[x] = FALSE
+1. x.degree = 0
+2. x.parent = NULL
+3. x.child = NULL
+4. x.left = NULL
+5. x.right = NULL
+6. x.mark = FALSE
 7. Add x to root list of H
 8. if x.key < H.min_node.key then
 9.      H.min_node = x
