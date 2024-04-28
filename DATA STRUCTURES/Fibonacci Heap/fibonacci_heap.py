@@ -1,13 +1,33 @@
 from collections import deque
 import math
-from node import Node
+class Node: 
+    def __init__(self, key):
+        self.key = key
+        self.parent = self.child = self.left = self.right = None
+        self.degree = 0
+        self.mark = False
+        
+    def show_value(self):
+        if self.key is None:
+            return "None"
+        return self.key
 
 class FibonacciHeap:
     def __init__(self):
         self.total_nodes = 0
         self.root_list = None
         self.min_node = None
+    
+    def show(self):
+        print(f'    Minimum node: {self.get_min()},')
+        print(f'    Total nodes: {self.total_nodes},')
+        print(f'    Root list: {self.get_root_list()}')
 
+    def get_root_list(self):
+        if self.root_list is None:
+            return "None"
+        return self.root_list.key
+    
     def is_empty(self):
         return self.total_nodes == 0
     
@@ -26,7 +46,9 @@ class FibonacciHeap:
             node = node.right
     
     def get_min(self):
-        return self.min_node
+        if self.min_node is None:
+            return "None"
+        return self.min_node.key
     
     # delete minimum node
     def extract_min(self):
