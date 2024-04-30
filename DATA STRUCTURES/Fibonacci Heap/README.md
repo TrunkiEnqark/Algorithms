@@ -1,9 +1,5 @@
 
-<!-- vscode-markdown-toc-config
-	numbering=true
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc --># Fibonacci Heap
+# Fibonacci Heap
 
 Fibonacci Heap được phát triển bởi Michael L.Fredman và Robert E.Tarjan vào năm 
 1984 và lần đầu tiên được công bố trong một tạp chí khoa học vào năm 1987. Tên của 
