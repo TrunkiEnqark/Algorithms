@@ -18,7 +18,7 @@ class FibonacciHeap:
         return self.total_nodes == 0
     
     def size(self):
-        return self.total_nodes
+        return self.total_nodes 
     
     def iterate(self, head):
         node = stop = head
