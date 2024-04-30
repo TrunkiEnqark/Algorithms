@@ -103,7 +103,7 @@ INSERT(H, x)
 ```
 ![insert](https://github.com/TrunkiEnqark/Algorithms/assets/89256879/909b75da-dc0d-4139-b732-028deca370b2)
 
-####  6.2.1. <a name='Phntchthigianchy'></a>Phân tích thời gian chạy
+#### <a name='Phntchthigianchy'></a>Phân tích thời gian chạy
 
 Để xác định chi phí khấu hao của `INSERT(H, x)`, giả sử H là Heap Fibonacci đầu vào và H' là Heap Fibonacci sau khi thực hiện phép chèn. Khi đó, `t(H') = t(H) + 1` và `m(H') = m(H)`, và sự tăng của tiềm năng là:
 `((t(H) + 1) + 2m(H)) - (t(H) + 2m(H)) = 1`
@@ -133,7 +133,7 @@ UNION(H1, H2)
 7. return H
 ```
 
-####  6.4.1. <a name='Phntchthigianchy-1'></a>Phân tích thời gian chạy
+#### <a name='Phntchthigianchy-1'></a>Phân tích thời gian chạy
 
 Sự thay đổi về tiềm năng là:
 ```
@@ -222,7 +222,7 @@ HEAP_LINK(H, y, x)
 
 (c)-(m) Xây dựng lại H
 
-####  6.5.1. <a name='Phntchthigianchy-1'></a>Phân tích thời gian chạy
+#### <a name='Phntchthigianchy-1'></a>Phân tích thời gian chạy
 
 Tiềm năng trước khi lấy ra node nhỏ nhất là `t(H) + 2m(H)`, và tiềm năng sau đó tối đa là `(D(n) + 1) + 2m(H)`, bởi vì tối đa `D(n) + 1` gốc còn lại và không có node nào bị *đánh dấu* trong quá trình thao tác. Do đó, chi phí khấu hao tối đa là:
 ```
@@ -279,7 +279,7 @@ CASCADING_CUT(H, y)
 
 (c)-(e) `DECREASE_KEY(H, 35, 5)`
 
-####  6.6.1. <a name='Phntchthigianchy-1'></a>Phân tích thời gian chạy
+####  <a name='Phntchthigianchy-1'></a>Phân tích thời gian chạy
 
 Chúng ta sẽ chứng minh thời gian chạy của thuật toán này chỉ là `O(1)`.
 Ta có thể thấy hàm `DECREASE_KEY` và `CUT` mỗi hàm chỉ tốn `O(1)`.
