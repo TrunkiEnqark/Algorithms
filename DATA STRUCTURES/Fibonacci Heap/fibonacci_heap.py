@@ -46,7 +46,6 @@ class FibonacciHeap:
                     children[i].parent = None
                     self.merge_with_root_list(children[i])
             self.remove_from_root_list(z)
-            
             if z == z.right:
                 self.min_node = self.root_list = None
             else:
@@ -54,7 +53,6 @@ class FibonacciHeap:
                 self.consolidate()
                 
             self.total_nodes -= 1
-        
         return z
     
     def insert(self, key):
