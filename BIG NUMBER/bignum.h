@@ -7,13 +7,12 @@ private:
     vector<int> vec;
 public:
     BigNum() {
-        vec.push_back(0);
+        vec.push_back(0); 
     }
 
     BigNum(int val) {
-        if (val == 0) {
+        if (val == 0) 
             re_size(1);
-        }
         for (; val > 0; val /= 10)
             vec.push_back(val%10);
         reverse(vec.begin(), vec.end());
@@ -147,6 +146,11 @@ public:
     }
 
     BigNum operator %= (int other) {
+        *this = *this % other;
+        return *this;
+    }
+
+    BigNum operator %= (BigNum other) {
         *this = *this % other;
         return *this;
     }
