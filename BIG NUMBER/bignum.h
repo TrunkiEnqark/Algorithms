@@ -297,3 +297,15 @@ public:
         return *this - (*this / other) * other;
     }
 };
+
+BigNum operator + (int a, BigNum b) {
+    return b + a;
+}
+
+BigNum operator - (int a, BigNum b) {
+    return (b - a) * (-1);
+}
+
+BigNum operator * (int a, BigNum b) {
+    return b * a;
+}
