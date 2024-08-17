@@ -7,8 +7,9 @@ private:
     struct Node {
         Node* child[26];
         int cnt;
+        int exist;
 
-        Node() : cnt(0) {
+        Node() : cnt(0), exist(0) {
             for (int ch = 0; ch < 26; ++ch) 
                 child[ch] = nullptr;
         }
@@ -34,8 +35,9 @@ public:
                 cur->child[nxt] = new Node();
             }
             cur = cur->child[nxt];
+            cur->cnt++;
         }
-        cur->cnt++;
+        cur->exist++;
     }
 
     bool find(const string& s) {
@@ -45,33 +47,31 @@ public:
             if (cur->child[nxt] == nullptr) return false;
             cur = cur->child[nxt];
         }
-        return cur->cnt > 0;
+        return cur->exist > 0;
     }
 
-    void erase(const string& s) {
-        if (!find(s)) return;
+    bool erase_recursive(Node* current, const string& s, int idx) {
+        if (idx != s.size()) {
+            int nxt = s[idx] - 'a';
+            bool is_child_deleted = erase_recursive(current->child[nxt], s, idx + 1);
+            if (is_child_deleted) current->child[nxt] = nullptr;
+        } else {
+            current->exist--;
+        }
 
-        Node* cur = root;
-        for (auto c : s) {
-            int nxt = c - 'a';
-            cur = cur->child[nxt]; 
-        }
-        cur->cnt--;
-    }
-
-    void dfs(Node* current_node = nullptr, string current_string = "") {
-        if (current_node == nullptr) {
-            current_node = root;
-        }
-        
-        if (current_node->cnt > 0) {
-            cout << current_string << '\n';
-        }
-        for (int c = 0; c < 26; ++c) {
-            if (current_node->child[c] != nullptr) {
-                dfs(current_node->child[c], current_string + char(c + 'a'));
+        if (current != root) {
+            current->cnt--;
+            if (current->cnt == 0) {
+                delete current;
+                return true; // deleted
             }
         }
+        return false;
+    }
+
+    bool erase(const string& s) {
+        if (!find(s)) return false;
+        return !erase_recursive(root, s, 0);        
     }
 };
 
@@ -83,6 +83,6 @@ int main() {
     for (auto word : words) {
         trie.insert(word);
     }
-    // cout << trie.find("abc");
-    trie.dfs();
+    cout << trie.erase("b") << endl;  
+    cout << trie.find("abc");
 }
