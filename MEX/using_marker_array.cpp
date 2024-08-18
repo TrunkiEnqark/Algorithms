@@ -2,19 +2,35 @@
 
 using namespace std;
 
-// O(n)
-int find_MEX(const vector<int>& nums) {
-    int max_ele = *max_element(nums.begin(), nums.end());
-    vector<bool> marked(max_ele + 1, false);
-    
-    for (auto num : nums)
-        marked[num] = true;
+class Mex {
+private:
+    map<int, int> frequency;
+    set<int> missing_numbers;
+    vector<int> A;
 
-    int result = 0;
-    while (marked[result])
-        result++;
-    return result;
-}
+public:
+    Mex(const vector<int>& A) : A(A) {
+        for (int i = 0; i <= A.size(); i++)
+            missing_numbers.insert(i);
+
+        for (int x : A) {
+            ++frequency[x];
+            missing_numbers.erase(x);
+        }
+    }
+
+    int mex() {
+        return *missing_numbers.begin();
+    }
+
+    void update(int idx, int value) {
+        if (--frequency[A[idx]] == 0)
+            missing_numbers.insert(A[idx]);
+        A[idx] = value;
+        ++frequency[value];
+        missing_numbers.erase(value);
+    }
+};
 
 int main() {
     vector<vector<int>> tests = {
@@ -26,6 +42,7 @@ int main() {
         cout << "MEX of {";
         for (int i = 0; i < test.size() - 1; i++) cout << test[i] << ", ";
         cout << test.back() << "} is ";
-        cout << find_MEX(test) << '\n';
+        Mex res = Mex(test);
+        cout << res.mex() << '\n';
     }
 }
