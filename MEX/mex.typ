@@ -58,6 +58,8 @@ int find_MEX(const vector<int>& nums) {
 
 Cách này nhanh hơn nhưng chỉ hiệu quả khi tính MEX một lần. Nếu cần tính MEX nhiều lần với các thay đổi trên mảng, ta cần một cấu trúc dữ liệu tốt hơn.
 
+#pagebreak()
+
 = Truy vấn nhiều lần
 == MEX với cập nhật mảng và truy vấn $O(1)$
 - Khởi tạo:
